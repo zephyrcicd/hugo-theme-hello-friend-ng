@@ -3,6 +3,7 @@
 - [amazon](https://simpleicons.org/?q=amazon)
 - [anilist](https://simpleicons.org/?q=anilist)
 - [box](https://simpleicons.org/?q=box)
+- bluesky
 - [behance](https://simpleicons.org/?q=behance)
 - [bitbucket](https://simpleicons.org/?q=bitbucket)
 - case - generic briefcase icon for work based links
@@ -76,6 +77,7 @@
 - [steam](https://simpleicons.org/?q=Steam)
 - [strava](https://simpleicons.org/?q=strava)
 - [telegram](https://simpleicons.org/?q=telegram)
+- threads
 - [threema](https://simpleicons.org/?q=threema)
 - [tiktok](https://simpleicons.org/?q=tiktok)
 - [tryhackme](https://simpleicons.org/?q=tryhackme)
