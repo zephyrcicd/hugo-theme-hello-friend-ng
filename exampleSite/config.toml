@@ -6,7 +6,6 @@ theme = "hello-friend-ng"
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 
-rssLimit  = 10  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
 
 archetypeDir = "archetypes"
@@ -35,6 +34,10 @@ disableHugoGeneratorInject = false
   path = 'page'
 
 [services]
+  [services.rss]
+      # Maximum number of items in the RSS feed.
+      limit = 42
+      
 #   [services.disqus]
 #     shortname = 'your-disqus-shortname'
 #   [services.googleAnalytics]
