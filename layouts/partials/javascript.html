@@ -1,7 +1,10 @@
 {{ $main := resources.Get "js/main.js" }}
 {{ $menu := resources.Get "js/menu.js" }}
 {{ $prism := resources.Get "js/prism.js" }}
-{{ $secureJS := slice $main $menu $prism | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{ $codeLineNumbers := resources.Get "js/code-line-numbers.js" }}
+{{ $codeCopy := resources.Get "js/code-copy.js" }}
+{{ $macosStyle := resources.Get "js/macos-code-style.js" }}
+{{ $secureJS := slice $main $menu $prism $codeLineNumbers $codeCopy $macosStyle | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{ range $val := $.Site.Params.customJS }}

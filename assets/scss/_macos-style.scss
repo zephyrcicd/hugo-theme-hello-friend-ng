@@ -1,0 +1,298 @@
+/* macOS风格代码块样式 */
+
+/* macOS窗口控制按钮容器 */
+.mac-header-bar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  border-radius: 10px 10px 0 0;
+  padding: 10px 15px;
+  position: relative;
+  margin: -10px -10px 0 -10px;
+  min-height: 32px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* macOS风格的代码块容器 */
+.code-toolbar.mac-style {
+  position: relative;
+  margin: 20px 0;
+  background: #1e1f26;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  overflow: visible;
+  padding: 10px;
+}
+
+/* 控制按钮组 */
+.mac-window-controls {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* 单个macOS按钮 */
+.mac-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* 关闭按钮 - 红色 */
+.mac-btn.mac-close {
+  background: #ff5f57;
+  border-color: #e0443e;
+
+  &:hover {
+    background: #ff3b30;
+  }
+
+  &:active {
+    background: #e0443e;
+  }
+}
+
+/* 最小化按钮 - 黄色 */
+.mac-btn.mac-minimize {
+  background: #ffbd2e;
+  border-color: #dea123;
+
+  &:hover {
+    background: #ffa500;
+  }
+
+  &:active {
+    background: #dea123;
+  }
+}
+
+/* 最大化按钮 - 绿色 */
+.mac-btn.mac-maximize {
+  background: #28ca42;
+  border-color: #1aab29;
+
+  &:hover {
+    background: #00d600;
+  }
+
+  &:active {
+    background: #1aab29;
+  }
+}
+
+/* 悬停时显示图标 */
+.mac-window-controls:hover .mac-btn::before {
+  opacity: 1;
+}
+
+/* 关闭按钮图标 (×) */
+.mac-btn.mac-close::before {
+  content: '×';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+
+/* 最小化按钮图标 (−) */
+.mac-btn.mac-minimize::before {
+  content: '−';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+
+/* 最大化按钮图标 - 双向箭头 */
+.mac-btn.mac-maximize::before,
+.mac-btn.mac-maximize::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.mac-window-controls:hover .mac-btn.mac-maximize::before,
+.mac-window-controls:hover .mac-btn.mac-maximize::after {
+  opacity: 1;
+}
+
+.mac-btn.mac-maximize::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.6);
+}
+
+.mac-btn.mac-maximize::after {
+  transform: translate(-50%, -50%) rotate(-135deg);
+  border-left: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-top: 1.5px solid rgba(0, 0, 0, 0.6);
+}
+
+/* 标题样式 */
+.mac-title {
+  flex: 1;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-weight: 500;
+  user-select: none;
+  margin-right: 60px; /* 为右侧预留空间，保持标题居中 */
+}
+
+/* 调整代码块在macOS风格下的样式 */
+.mac-style pre[class*="language-"] {
+  margin: 0;
+  border-radius: 0 0 10px 10px;
+  border: none;
+  box-shadow: none;
+  background: #1e1f26 !important;
+}
+
+/* 调整toolbar位置 */
+.mac-style .toolbar {
+  top: 42px !important;
+  right: 15px !important;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mac-style:hover .toolbar {
+  opacity: 1;
+}
+
+/* 最小化状态 */
+.code-toolbar.minimized {
+  .mac-header-bar {
+    border-radius: 10px;
+  }
+
+  pre {
+    display: none;
+  }
+}
+
+/* 全屏模式 */
+.code-toolbar.maximized {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 10000;
+
+  pre {
+    max-height: calc(90vh - 60px);
+    overflow: auto;
+  }
+}
+
+/* 全屏遮罩 */
+.mac-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 深色主题优化 */
+[data-theme="dark"] {
+  .mac-header-bar {
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  }
+
+  .mac-title {
+    color: #9ca3af;
+  }
+}
+
+/* 亮色主题优化 */
+[data-theme="light"] {
+  .mac-header-bar {
+    background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+  }
+
+  .mac-title {
+    color: #d1d5db;
+  }
+}
+
+/* 动画效果 */
+.code-toolbar.mac-style {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .mac-title {
+    font-size: 12px;
+    margin-right: 40px;
+  }
+
+  .mac-btn {
+    width: 10px;
+    height: 10px;
+  }
+
+  .mac-window-controls {
+    gap: 6px;
+  }
+
+  .mac-header-bar {
+    padding: 8px 12px;
+    min-height: 28px;
+  }
+}

@@ -1,0 +1,26 @@
+/* 禁用 Prism.js line-highlight 插件的样式 */
+
+/* 完全移除 line-highlight 效果 */
+.line-highlight,
+pre[class*="language-"] .line-highlight,
+pre[class*="language-"] .line-highlight:before,
+pre[class*="language-"] .line-highlight[data-end]:after {
+  display: none !important;
+}
+
+/* 确保代码块背景在不同主题下的一致性 */
+[data-theme="light"] pre[class*="language-"] {
+  background-color: #2e3440 !important;
+}
+
+[data-theme="light"] pre[class*="language-"] code {
+  background-color: transparent !important;
+}
+
+pre[class*="language-"] {
+  background-color: #1e1f26 !important;
+}
+
+pre[class*="language-"] code {
+  background-color: transparent !important;
+}

@@ -1,0 +1,122 @@
+/* Code Block Enhancements - Line Numbers and Copy Button */
+
+/* 代码块深色主题样式 */
+pre[class*="language-"],
+pre[class*="language-"] code {
+  background-color: #1e1f26 !important;
+  color: #f8f8f2 !important;
+  text-shadow: none !important;
+}
+
+/* 代码块圆角 */
+pre[class*="language-"] {
+  border-radius: 10px;
+  position: relative;
+}
+
+/* 行号样式 */
+pre[class*="language-"].line-numbers {
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  letter-spacing: -1px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: rgba(255, 255, 255, 0.4);
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+/* 亮色主题下的代码块 */
+[data-theme="light"] pre[class*="language-"],
+[data-theme="light"] pre[class*="language-"] code {
+  background-color: #2e3440 !important;
+  color: #d8dee9 !important;
+}
+
+/* 亮色主题下的行号 */
+[data-theme="light"] .line-numbers-rows > span:before {
+  color: rgba(216, 222, 233, 0.4);
+}
+
+[data-theme="light"] .line-numbers .line-numbers-rows {
+  border-right: 1px solid rgba(216, 222, 233, 0.12);
+}
+
+/* Chroma兼容性（如果使用了Hugo内置高亮） */
+.chroma {
+  border-radius: 10px;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+}
+
+.copy-button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.05);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+/* 语言标签可点击样式 */
+.toolbar-item span.copy-button {
+  display: inline-block;
+  padding: 0 0.5em !important;
+}
+
+/* 优化toolbar显示 */
+div.code-toolbar > .toolbar {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+/* 复制成功反馈动画 */
+@keyframes copySuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.copy-button.success {
+  animation: copySuccess 0.5s ease-in-out;
+}
