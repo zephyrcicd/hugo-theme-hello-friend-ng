@@ -49,10 +49,38 @@
   justify-content: center;
   line-height: 1;
   cursor: pointer;
+  position: relative;
+
+  &:hover .theme-toggler {
+    transform: scale(1.1);
+  }
+
+  // Add tooltip
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: var(--border-color);
+    color: var(--color);
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  &:hover::after {
+    opacity: 0.9;
+  }
 }
 
 .theme-toggler {
   fill: currentColor;
+  transition: transform 0.3s ease;
 }
 
 .not-selectable {
